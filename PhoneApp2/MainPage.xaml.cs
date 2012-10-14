@@ -33,7 +33,7 @@ namespace PhoneApp2
                 var snm = SubnetMask.CreateByNetBitLength(maskLenght);
                 int maxHostAmount = (2 << (31 - maskLenght)) - 2;
 
-                builder.Append(string.Format("Your IP: {0} \n", IP.Text));
+                builder.Append(string.Format("Host IP: {0} \n", IP.Text));
                 builder.Append(string.Format("Subnet mask: {0} \n", snm));
                 builder.Append(string.Format("Network IP: {0} \n", ipAdr.GetNetworkAddress(snm)));
                 builder.Append(string.Format("Network broadcast IP: {0} \n",  ipAdr.GetBroadcastAddress(snm)));
