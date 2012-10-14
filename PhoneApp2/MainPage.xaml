@@ -57,12 +57,14 @@
 
 	</ScrollViewer>
 
-    <!--Sample code showing usage of ApplicationBar-->
+    <!--The ApplicationBar-->
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
             <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Clear" Click="OnClear"/>
+            <!--<shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Calculate" Click="OnCalculate"/>-->
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem Text="Clear" Click="OnClear"/>
+                <!--<shell:ApplicationBarMenuItem Text="Calculate" Click="OnCalculate"/>-->
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
