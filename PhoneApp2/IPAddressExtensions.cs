@@ -3,6 +3,9 @@ using System.Net;
 
 namespace PhoneApp2
 {
+    /// <summary>
+    /// First version got from  MDNS blog
+    /// </summary>
     public static class SubnetMask
     {
         public static readonly IPAddress ClassA = IPAddress.Parse("255.0.0.0");
@@ -70,6 +73,24 @@ namespace PhoneApp2
             return new IPAddress(broadcastAddress);
         }
 
+        public static IPAddress GetLastSubnetAddress(this IPAddress address, IPAddress subnetMask)
+        {
+            var broadcastAddress = address.GetBroadcastAddress(subnetMask);
+
+            byte[] ipAdressBytes = broadcastAddress.GetAddressBytes();
+            byte[] subnetMaskBytes = subnetMask.GetAddressBytes();
+
+            byte[] latestNetworkAddress = new byte[ipAdressBytes.Length];
+            for (int i = 0; i < latestNetworkAddress.Length; i++)
+            {
+                latestNetworkAddress[i] =
+                    subnetMaskBytes[i] == 255
+                    ? (byte)ipAdressBytes[i]
+                    : (byte)(--ipAdressBytes[i]);
+            }
+            return new IPAddress(latestNetworkAddress);
+        }              
+
         public static IPAddress GetNetworkAddress(this IPAddress address, IPAddress subnetMask)
         {
             byte[] ipAdressBytes = address.GetAddressBytes();
@@ -78,13 +99,32 @@ namespace PhoneApp2
             if (ipAdressBytes.Length != subnetMaskBytes.Length)
                 throw new ArgumentException("Lengths of IP address and subnet mask do not match.");
 
-            byte[] broadcastAddress = new byte[ipAdressBytes.Length];
-            for (int i = 0; i < broadcastAddress.Length; i++)
+            byte[] networkAddress = new byte[ipAdressBytes.Length];
+            for (int i = 0; i < networkAddress.Length; i++)
             {
-                broadcastAddress[i] = (byte)(ipAdressBytes[i] & (subnetMaskBytes[i]));
+                networkAddress[i] = (byte)(ipAdressBytes[i] & (subnetMaskBytes[i]));
             }
-            return new IPAddress(broadcastAddress);
+            return new IPAddress(networkAddress);
         }
+
+        public static IPAddress GetFirstSubnetAddress(this IPAddress address, IPAddress subnetMask)
+        {
+            var networkAddress = address.GetNetworkAddress(subnetMask);
+
+            byte[] ipAdressBytes = networkAddress.GetAddressBytes();
+            byte[] subnetMaskBytes = subnetMask.GetAddressBytes();
+
+            byte[] firstNetworkAddress = new byte[ipAdressBytes.Length];
+            for (int i = 0; i < firstNetworkAddress.Length; i++)
+            {
+                firstNetworkAddress[i] = 
+                    subnetMaskBytes[i] == 255
+                    ? (byte) ipAdressBytes[i]
+                    : (byte) (++ipAdressBytes[i]);
+            }
+            return new IPAddress(firstNetworkAddress);
+        }
+
 
         public static bool IsInSameSubnet(this IPAddress address2, IPAddress address, IPAddress subnetMask)
         {

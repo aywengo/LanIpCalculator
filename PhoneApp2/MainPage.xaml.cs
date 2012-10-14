@@ -38,6 +38,7 @@ namespace PhoneApp2
                 builder.Append(string.Format("Network IP: {0} \n", ipAdr.GetNetworkAddress(snm)));
                 builder.Append(string.Format("Network broadcast IP: {0} \n",  ipAdr.GetBroadcastAddress(snm)));
                 builder.Append(string.Format("Max hosts amount: {0} \n", maxHostAmount));
+                builder.Append(string.Format("IP range: {0} - {1} \n", ipAdr.GetFirstSubnetAddress(snm) , ipAdr.GetLastSubnetAddress(snm)));
             }
             else
             {
