@@ -41,7 +41,7 @@
 					<TextBlock Text="IP:"  FontSize="26"  />
 					<TextBox x:Name="IP" InputScope="Digits"  FontSize="26" />
 					<TextBlock Text="Mask Length:"  FontSize="26" />
-					<TextBox x:Name="MaskLength" InputScope="Number"  FontSize="26" />
+					<TextBox x:Name="MaskLength" InputScope="Number"  FontSize="26" MaxLength="2" />
 					<Button Content="Calculate" x:Name="Button1" Click="OnCalculate" FontSize="32" BorderBrush="#FFF7DA51" BorderThickness="3" >
 						<Button.Background>
 							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
