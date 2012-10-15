@@ -1,0 +1,1 @@
+Makes possible on Windows Phone 7.x to easily calculate the subnet addresses range and subnet masks, broadcast address, net address, net prefix and net mask inversion which is used in the access control lists (ACL) of Cisco network equipment.
