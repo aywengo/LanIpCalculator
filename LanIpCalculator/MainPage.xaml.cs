@@ -64,6 +64,7 @@ namespace LanIpCalculator
         private void ApplicationBarMenuItem_Click(object sender, EventArgs e)
         {
             this.Calculate();
+            CalcButton.Focus();
         }
     }
 }
