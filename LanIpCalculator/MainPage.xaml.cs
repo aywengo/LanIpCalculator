@@ -29,10 +29,23 @@ namespace LanIpCalculator
         private void Calculate()
         {
             StringBuilder builder = new StringBuilder();
+            bool hasErrors = false;
 
-            IPAddress ipAdr;
-            int maskLenght;
-            if (IPAddress.TryParse(IP.Text, out ipAdr) && int.TryParse(MaskLength.Text, out maskLenght) && maskLenght < 31)
+            IPAddress ipAdr;            
+            if (!IPAddress.TryParse(IP.Text, out ipAdr))
+            {
+                builder.Append("Incorrect IP address! \n");
+                hasErrors = true;
+            }
+
+            int maskLenght = int.Parse(MaskLength.Text);
+            if (maskLenght > 30)
+            {
+                builder.Append("Incorrect subnet mask! \n");
+                hasErrors = true;
+            }
+            
+            if (!hasErrors)
             {
                 var snm = SubnetMask.CreateByNetBitLength(maskLenght);
                 int maxHostAmount = (2 << (31 - maskLenght)) - 2;
@@ -43,11 +56,7 @@ namespace LanIpCalculator
                 builder.Append(string.Format("Network broadcast IP: {0} \n", ipAdr.GetBroadcastAddress(snm)));
                 builder.Append(string.Format("Max hosts amount: {0} \n", maxHostAmount));
                 builder.Append(string.Format("IP range: {0} - {1} \n", ipAdr.GetFirstSubnetAddress(snm), ipAdr.GetLastSubnetAddress(snm)));
-            }
-            else
-            {
-                builder.Append("Ups, some unknown error has been occured :)");
-            }
+            };
 
             Result.Text = builder.ToString();
         }
