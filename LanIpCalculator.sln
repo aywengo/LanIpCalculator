@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010 Express for Windows Phone
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LanIpCalculator", "PhoneApp2\LanIpCalculator.csproj", "{33C76634-8422-4642-ACCC-FFA55FDCCA23}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LanIpCalculator", "LanIpCalculator\LanIpCalculator.csproj", "{33C76634-8422-4642-ACCC-FFA55FDCCA23}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
