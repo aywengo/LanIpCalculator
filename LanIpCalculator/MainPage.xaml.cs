@@ -38,8 +38,8 @@ namespace LanIpCalculator
                 hasErrors = true;
             }
 
-            int maskLenght = int.Parse(MaskLength.Text);
-            if (maskLenght > 30)
+            int maskLenght = string.IsNullOrWhiteSpace(MaskLength.Text) ? 0 : int.Parse(MaskLength.Text);
+            if (maskLenght > 30 || maskLenght < 1)
             {
                 builder.Append("Incorrect subnet mask! \n");
                 hasErrors = true;
