@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net;
 
-namespace PhoneApp2
+namespace LanIpCalculator
 {
     /// <summary>
     /// First version got from  MDNS blog
