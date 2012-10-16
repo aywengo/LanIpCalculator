@@ -7,7 +7,9 @@
 
     <!--Application Resources-->
     <Application.Resources>
+        <local:Resource xmlns:local="clr-namespace:LanIpCalculator.Assets" x:Key="ResourceStrings" />
     </Application.Resources>
+
 
     <Application.ApplicationLifetimeObjects>
         <!--Required object that handles lifetime events for the application-->

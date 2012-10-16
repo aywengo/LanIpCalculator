@@ -3,6 +3,7 @@ using System.Net;
 using System.Windows;
 using Microsoft.Phone.Controls;
 using System.Text;
+using LanIpCalculator.Assets;
 
 namespace LanIpCalculator
 {
@@ -34,14 +35,16 @@ namespace LanIpCalculator
             IPAddress ipAdr;            
             if (!IPAddress.TryParse(IP.Text, out ipAdr))
             {
-                builder.Append("Incorrect IP address! \n");
+                builder.Append(string.Format(Resource.WarningIP));
+                builder.Append(string.Format("\n"));
                 hasErrors = true;
             }
 
             int maskLenght = string.IsNullOrWhiteSpace(MaskLength.Text) ? 0 : int.Parse(MaskLength.Text);
             if (maskLenght > 30 || maskLenght < 1)
             {
-                builder.Append("Incorrect subnet mask! \n");
+                builder.Append(string.Format(Resource.WarningSubnetMask));
+                builder.Append(string.Format("\n"));
                 hasErrors = true;
             }
             
@@ -50,12 +53,18 @@ namespace LanIpCalculator
                 var snm = SubnetMask.CreateByNetBitLength(maskLenght);
                 int maxHostAmount = (2 << (31 - maskLenght)) - 2;
 
-                builder.Append(string.Format("Host IP: {0} \n", IP.Text));
-                builder.Append(string.Format("Subnet mask: {0} \n", snm));
-                builder.Append(string.Format("Network IP: {0} \n", ipAdr.GetNetworkAddress(snm)));
-                builder.Append(string.Format("Network broadcast IP: {0} \n", ipAdr.GetBroadcastAddress(snm)));
-                builder.Append(string.Format("Max hosts amount: {0} \n", maxHostAmount));
-                builder.Append(string.Format("IP range: {0} - {1} \n", ipAdr.GetFirstSubnetAddress(snm), ipAdr.GetLastSubnetAddress(snm)));
+                builder.Append(string.Format(Resource.ResultHostIP, IP.Text));
+                builder.Append(string.Format("\n"));
+                builder.Append(string.Format(Resource.ResultSubnetMask, snm));
+                builder.Append(string.Format("\n"));
+                builder.Append(string.Format(Resource.ResultNetworkIP, ipAdr.GetNetworkAddress(snm)));
+                builder.Append(string.Format("\n"));
+                builder.Append(string.Format(Resource.ResultNetworkBroadcastIP, ipAdr.GetBroadcastAddress(snm)));
+                builder.Append(string.Format("\n"));
+                builder.Append(string.Format(Resource.ResultMaxHostsAmount, maxHostAmount));
+                builder.Append(string.Format("\n"));
+                builder.Append(string.Format(Resource.ResultIPRange, ipAdr.GetFirstSubnetAddress(snm), ipAdr.GetLastSubnetAddress(snm)));
+                builder.Append(string.Format("\n"));
             };
 
             Result.Text = builder.ToString();

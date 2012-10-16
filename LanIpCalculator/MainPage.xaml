@@ -14,7 +14,11 @@
     Orientation="Portrait"
     shell:SystemTray.IsVisible="True">
 
-    <!--LayoutRoot is the root grid where all page content is placed-->
+    <phone:PhoneApplicationPage.Resources>
+        <local:Resource xmlns:local="clr-namespace:LanIpCalculator.Assets" x:Key="ResourceStrings" />
+    </phone:PhoneApplicationPage.Resources>
+
+     <!--LayoutRoot is the root grid where all page content is placed-->
     <ScrollViewer>
 
 		<!--LayoutRoot is the root grid where all page content is placed-->
@@ -39,11 +43,11 @@
 			<!--ContentPanel - place additional content here-->
 			<Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
 				<StackPanel x:Name="MainStackPanel">
-					<TextBlock Text="IP:"  FontSize="26"  />
+                    <TextBlock Text="{Binding Path=CaptionIP, Source={StaticResource ResourceStrings}}"  FontSize="26"  />
 					<TextBox x:Name="IP" InputScope="Digits"  FontSize="26" />
-					<TextBlock Text="Mask Length:"  FontSize="26" />
+                    <TextBlock Text="{Binding Path=CaptionMaskLength, Source={StaticResource ResourceStrings}}"  FontSize="26" />
 					<TextBox x:Name="MaskLength" InputScope="Number"  FontSize="26" MaxLength="2" />
-                    <Button Content="Calculate" x:Name="CalcButton" Click="OnCalculate" FontSize="32" BorderBrush="#FFF7DA51" BorderThickness="3" >
+                    <Button Content="{Binding Path=ApplicationCalculate, Source={StaticResource ResourceStrings}}" x:Name="CalcButton" Click="OnCalculate" FontSize="32" BorderBrush="#FFF7DA51" BorderThickness="3" >
 						<Button.Background>
 							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
 								<GradientStop Color="#FF7072E2" Offset="0"/>
@@ -61,11 +65,11 @@
     <!--The ApplicationBar-->
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="calc.png" Text="Calculate" Click="ApplicationBarMenuItem_Click" />
             <shell:ApplicationBarIconButton IconUri="clear.png" Text="Clear" Click="OnClear"/>
-            <shell:ApplicationBarIconButton IconUri="calc.png" Text="Calculate" Click="ApplicationBarMenuItem_Click"/>
             <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="Clear" Click="OnClear"/>
                 <shell:ApplicationBarMenuItem Text="Calculate" Click="ApplicationBarMenuItem_Click"/>
+                <shell:ApplicationBarMenuItem Text="Clear" Click="OnClear"/>
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
