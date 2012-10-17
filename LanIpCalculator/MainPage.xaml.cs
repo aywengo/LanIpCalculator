@@ -50,20 +50,19 @@ namespace LanIpCalculator
             
             if (!hasErrors)
             {
-                var snm = SubnetMask.CreateByNetBitLength(maskLenght);
-                int maxHostAmount = (2 << (31 - maskLenght)) - 2;
+                var lanIP = new LanIpAddress(ipAdr, maskLenght);
 
-                builder.Append(string.Format(Resource.ResultHostIP, IP.Text));
+                builder.Append(string.Format(Resource.ResultHostIP, lanIP.IPadress));
                 builder.Append(string.Format("\n"));
-                builder.Append(string.Format(Resource.ResultSubnetMask, snm));
+                builder.Append(string.Format(Resource.ResultSubnetMask, lanIP.SubNetMask));
                 builder.Append(string.Format("\n"));
-                builder.Append(string.Format(Resource.ResultNetworkIP, ipAdr.GetNetworkAddress(snm)));
+                builder.Append(string.Format(Resource.ResultNetworkIP, lanIP.NetworkIP));
                 builder.Append(string.Format("\n"));
-                builder.Append(string.Format(Resource.ResultNetworkBroadcastIP, ipAdr.GetBroadcastAddress(snm)));
+                builder.Append(string.Format(Resource.ResultNetworkBroadcastIP, lanIP.BroadastNetworkIP));
                 builder.Append(string.Format("\n"));
-                builder.Append(string.Format(Resource.ResultMaxHostsAmount, maxHostAmount));
+                builder.Append(string.Format(Resource.ResultMaxHostsAmount, lanIP.MaxHostAmount));
                 builder.Append(string.Format("\n"));
-                builder.Append(string.Format(Resource.ResultIPRange, ipAdr.GetFirstSubnetAddress(snm), ipAdr.GetLastSubnetAddress(snm)));
+                builder.Append(string.Format(Resource.ResultIPRange, lanIP.FirstSubnetIP, lanIP.LastSubnetIP));
                 builder.Append(string.Format("\n"));
             };
 
