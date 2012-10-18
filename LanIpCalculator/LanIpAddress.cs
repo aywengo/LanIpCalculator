@@ -98,9 +98,7 @@ namespace LanIpCalculator
         {
             get
             {
-                var networkAddress = IPadress.GetNetworkAddress(SubNetMask);
-
-                byte[] ipAdressBytes = networkAddress.GetAddressBytes();
+                byte[] ipAdressBytes = NetworkIP.GetAddressBytes();
                 byte[] subnetMaskBytes = SubNetMask.GetAddressBytes();
 
                 byte[] firstNetworkAddress = new byte[ipAdressBytes.Length];
@@ -119,9 +117,7 @@ namespace LanIpCalculator
         {
             get
             {
-                var broadcastAddress = IPadress.GetBroadcastAddress(SubNetMask);
-
-                byte[] ipAdressBytes = broadcastAddress.GetAddressBytes();
+                byte[] ipAdressBytes = BroadastNetworkIP.GetAddressBytes();
                 byte[] subnetMaskBytes = SubNetMask.GetAddressBytes();
 
                 byte[] latestNetworkAddress = new byte[ipAdressBytes.Length];
