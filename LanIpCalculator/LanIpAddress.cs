@@ -43,8 +43,6 @@ namespace LanIpCalculator
                     }
                 }
                 return new IPAddress(binaryMask);
-                
-                //return SubnetMask.CreateByNetBitLength(MaskLegth);
             }
         }
 
