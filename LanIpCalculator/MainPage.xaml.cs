@@ -69,9 +69,15 @@ namespace LanIpCalculator
             Result.Text = builder.ToString();
         }
 
-        private void ApplicationBarMenuItem_Click(object sender, EventArgs e)
+        private void AppBarCalculateMenuItem_Click(object sender, EventArgs e)
         {
             this.Calculate();
+            CalcButton.Focus();
+        }
+
+        private void AppBarCopyIconButton_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(Result.Text);
             CalcButton.Focus();
         }
     }

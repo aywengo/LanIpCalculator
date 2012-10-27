@@ -65,10 +65,11 @@
     <!--The ApplicationBar-->
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="calc.png" Text="Calculate" Click="ApplicationBarMenuItem_Click" />
+            <shell:ApplicationBarIconButton IconUri="calc.png" Text="Calculate" Click="AppBarCalculateMenuItem_Click" />
             <shell:ApplicationBarIconButton IconUri="clear.png" Text="Clear" Click="OnClear"/>
+            <shell:ApplicationBarIconButton IconUri="copy.png" Text="Copy" Click="AppBarCopyIconButton_Click"/>
             <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="Calculate" Click="ApplicationBarMenuItem_Click"/>
+                <shell:ApplicationBarMenuItem Text="Calculate" Click="AppBarCalculateMenuItem_Click"/>
                 <shell:ApplicationBarMenuItem Text="Clear" Click="OnClear"/>
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
